@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "调试当前ts项目",
+            "type": "node",
+            "request": "launch",
+            "args": [
+                "${workspaceRoot}/server/server.ts" // 入口文件
+            ],
+            "runtimeArgs": ["--nolazy", "-r", "./server/ts-register"], // 注册ts环境
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        }
+    ]
+}

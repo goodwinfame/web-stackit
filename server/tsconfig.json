@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+      "target": "es6",
+      "strict": true,
+      "outDir": "./out",
+      "rootDir": "./",
+      "module": "commonjs",
+      "typeRoots": ["./node_modules/@types"],
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true
+  }
+}
