@@ -1,16 +1,17 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
-            "name": "调试当前ts项目",
+            "name": "调试stackit server",
             "type": "node",
             "request": "launch",
             "args": [
-                "${workspaceRoot}/server/server.ts" // 入口文件
+                "${workspaceRoot}/server/src/server.ts" // 入口文件
             ],
-            "runtimeArgs": ["--nolazy", "-r", "./server/ts-register"], // 注册ts环境
+            "runtimeArgs": ["--nolazy", "-r", "${workspaceRoot}/server/src/ts-register"], // 注册ts环境
             "sourceMaps": true,
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}/server",
             "protocol": "inspector",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen"

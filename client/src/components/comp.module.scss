@@ -1,0 +1,109 @@
+:global{
+    .PageStatus-list,.PageStatus-detail{
+        :local{
+            .Input{
+                flex-direction: row;
+                height: 80px;
+                justify-content: flex-start;
+                input{
+                    height: 30px;
+                    font-size: 14px;
+                    &:focus{
+                        border-width: 1px;
+                    }
+                }
+                h3{
+                    font-size: 16px;
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}
+.Input{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    flex-direction: column;
+    transition: all 0.2s ease-out;
+    h3{
+        font-size: 38px;
+        color: #03A9F4;
+    }
+    input{
+        width: 450px;
+        height: 45px;
+        font-size: 20px;
+        padding: 0 15px;
+        outline: none;
+        
+        &:focus{
+            border: 3px solid rgba(#03A9F4, 0.6)
+        }
+    }
+}
+
+.ResultList{
+    border-top: 1px solid #ccc; 
+    margin-top: 10px;
+    &.loading{
+        .ResultItem{
+            h4{
+                a{
+                    cursor: default;
+                }
+            }
+        }
+    }
+    .ResultItem{
+        h4{
+            a{
+                cursor: pointer;
+            }
+        }
+    }
+    .Afterfix{
+        margin: 20px;
+        overflow: hidden;
+        text-align: center;
+    }
+}
+
+.Artical{
+    p{
+        white-space: pre;
+        
+    }
+}
+
+.PageDetail{
+    .AnswerSplit{
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+        height: 12px;
+        margin-bottom: 12px;
+        line-height: 1em;
+        &:after{
+            content: "Answer";
+            display: inline-block;
+            font-size: 24px;
+            background: #fff;
+            padding: 0 12px;
+        }
+    }
+}
+
+.Loading {
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    &.global{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
