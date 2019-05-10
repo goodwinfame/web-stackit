@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useCallback} from 'react'
 import {GlobalContext} from '../Container';
 import Artical from './Artical';
 import styles from './comp.module.scss';
@@ -12,19 +12,22 @@ interface props {
 const QuestionList = ({search}: props) => {
     const {questionList, updateView} = useContext(GlobalContext) as Store.GlobalContext;
     
-    function loadMore() {
-        search({
-            pageNum: questionList.pageNum + 1
-        });
-    }
+    const loadMore = useCallback(
+        function() {
+            search({
+                pageNum: questionList.pageNum + 1
+            });
+        },
+        [questionList.pageNum, search],
+    )
 
-    function viewPage(id: number) {
-        
-        updateView(viewState["detail"], id)
-
-   
-        
-    }
+    const viewPage = useCallback(
+        function(id: number) {
+            updateView(viewState["detail"], id)
+        },
+        [],
+    )
+    
 
     return (
         <div className={`${styles.ResultList} ${styles[questionList.state]}`}>

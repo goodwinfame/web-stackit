@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { GlobalContext } from '../Container';
 import Artical from './Artical';
 import styles from './comp.module.scss';
@@ -15,7 +15,7 @@ const QuestionDetail = ({ id }: Props) => {
         questionList,
     } = useContext(GlobalContext) as Store.GlobalContext;
 
-    const question = questionList.value.find(q => q.question_id === id);
+    const question = useMemo(()=>questionList.value.find(q => q.question_id === id), [id, questionList.value]);
 
     const [detail, setDetail] = useState({
         value: question?{
@@ -86,9 +86,12 @@ const QuestionDetail = ({ id }: Props) => {
 
     if(detail.value === null) return null;
 
-    function goBackToList() {
-        updateView(viewState['list'], null);
-    }
+    const goBackToList = useCallback(
+        function() {
+            updateView(viewState['list'], null);
+        } ,
+        [],
+    )
 
 
     return (

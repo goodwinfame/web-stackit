@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useCallback, useRef } from 'react'
 import { GlobalContext } from '../Container';
 import styles from './comp.module.scss';
 import { inputState, listState, viewState } from '../enums';
@@ -16,6 +16,11 @@ const SearchInput = ({ search }: Props) => {
         updateView
     } = useContext(GlobalContext) as Store.GlobalContext;
 
+    const inputEl = useCallback((node)=>{
+        node.focus()
+    },[])
+
+
     useEffect(() => {
         searchInputTimer = window.setTimeout(()=>{
             updateSearchInput(undefined, inputState["none"])
@@ -27,32 +32,43 @@ const SearchInput = ({ search }: Props) => {
         };
     }, [searchInput.value])
 
-    function handleEnterKey(e: React.KeyboardEvent) {
-        if (e.nativeEvent.keyCode === 13) {
-            onSearch()
-        }
-    }
-
-    function onInput(e: React.ChangeEvent<HTMLInputElement>) {
-        const val = e.target.value;
-        updateSearchInput(val, inputState["typing"])
-
-    }
-
-    function onSearch() {
+    const onSearch = useCallback(
+        function() {
         
-        updateView(viewState["list"]);
-        updateSearchInput(undefined, inputState["none"]);
-        updateQuestionList([], 1, listState["loading"]);
-        search({
-            q: searchInput.value
-        })
-    }
+            updateView(viewState["list"]);
+            updateSearchInput(undefined, inputState["none"]);
+            updateQuestionList([], 1, listState["loading"]);
+            search({
+                q: searchInput.value
+            })
+        },
+        [searchInput.value, search]
+    )
+
+    const handleEnterKey = useCallback(
+        function(e: React.KeyboardEvent) {
+            if (e.nativeEvent.keyCode === 13) {
+                onSearch()
+            }
+        },
+        [onSearch],
+    )
+
+    const onInput = useCallback(
+        function(e: React.ChangeEvent<HTMLInputElement>) {
+            const val = e.target.value;
+            updateSearchInput(val, inputState["typing"])
+    
+        },
+        []
+    )
+
+    
 
     return (
         <div className={styles.Input}>
             <h3>Web-stackit</h3>
-            <input placeholder={"Press enter to search on Stack Overflow"} value={searchInput.value} onChange={onInput} onKeyPress={handleEnterKey} />
+            <input ref={inputEl} placeholder={"Press enter to search on Stack Overflow"} value={searchInput.value} onChange={onInput} onKeyPress={handleEnterKey} />
         </div>
 
     )
