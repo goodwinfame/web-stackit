@@ -1,12 +1,13 @@
-Web-stackit is a web interface of [stackit](https://github.com/lukasschwab/stackit), which is a cli of Stack Overflow.<br>
+Web-stackit is search page using stackexchagne APIs.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I build this project to practice React hooks and Tpescript.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### client `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,9 +15,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm start:server`
+### server npm start`
 
-start a webserver on http://localhost:8080
+start a webserver on http://localhost:8011
 
 ### `npm run build`
 
@@ -28,6 +29,3 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run deploy`
-
-Buid web app and run the server
